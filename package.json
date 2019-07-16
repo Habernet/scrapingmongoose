@@ -4,6 +4,7 @@
   "description": "Heroku app that will scrape for news articles and persist data in MongoDB",
   "main": "server.js",
   "scripts": {
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

@@ -5,6 +5,7 @@ require("dotenv").config();
 const express = require("express");
 const logger = require("morgan");
 const exphbs = require("express-handlebars");
+const mongoose = require("mongoose");
 
 // Models
 const db = require("./models");
@@ -30,6 +31,11 @@ app.engine(
   })
 );
 app.set("view engine", "handlebars");
+
+var MONGODB_URI =
+  process.env.MONGODB_URI || "mongodb://localhost/mongoosescraper";
+
+mongoose.connect(MONGODB_URI);
 
 //Routes
 require("./routes/apiRoutes")(app);
