@@ -1,13 +1,7 @@
 // Route dependencies
 const db = require("../models");
-const mongoose = require("mongoose");
 
 module.exports = app => {
-  // connect to the DB
-  mongoose.connect("mongodb://localhost/mongoosescraper", {
-    useNewUrlParser: true
-  });
-
   // Home page route
   app.get("/", (req, res) => {
     // change query to only find those who aren't saved!!
@@ -32,6 +26,4 @@ module.exports = app => {
       }
     );
   });
-
-  //
 };
