@@ -4,6 +4,7 @@ require("dotenv").config();
 // Dependencies
 const express = require("express");
 const logger = require("morgan");
+const exphbs = require("express-handlebars");
 
 // Models
 const db = require("./models");
