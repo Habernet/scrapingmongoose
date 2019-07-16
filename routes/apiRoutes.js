@@ -24,6 +24,8 @@ module.exports = app => {
 
         // build your results array and prepare it for displaying on the page.
         $("a.listElmnt-storyHeadline img").each((i, element) => {
+          // MIGHT STILL NEED TO GRAB THE HREF OF THE PARENT DIV HERE
+
           let result = {};
 
           if (!currentHeadlines.includes($(element).attr("alt"))) {

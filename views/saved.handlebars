@@ -1,10 +1,8 @@
-{{!-- // here we will receive an array of articles for displaying on the main page --}}
-{{!-- 
-Title, image
-View Article button, save article button --}}
+{{!-- // this will receive an array of saved articles for displaying --}}
 
+{{!-- Title, image --}}
+{{!-- view article button, comments button, delete from saved button --}}
 
-{{!-- For each article we recieve..make a basic card with the title, image, view article link and save button --}}
 
 <div class="container">
     {{#each articles}}
@@ -18,8 +16,9 @@ View Article button, save article button --}}
                 <div class="card-action">
                     {{!-- When you grab the URL, it goes here --}}
                     <a class="waves-effect waves-light btn-small">View Article</a>
-                    <a data-id="{{this._id}}" class="waves-effect waves-light btn-small"><i
-                            class="material-icons right">cloud</i>Save This Article</a>
+                    <button data-id="{{this._id}}" class="btn waves-effect waves-light">Comment
+                        <i class="material-icons right">send</i>
+                    </button>
                 </div>
             </div>
         </div>

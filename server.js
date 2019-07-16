@@ -20,6 +20,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
 
+// Use Morgan
+app.use(logger("dev"));
 // Set templating engine
 app.engine(
   "handlebars",
