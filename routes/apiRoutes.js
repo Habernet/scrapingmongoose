@@ -31,7 +31,12 @@ module.exports = app => {
             )
           ) {
             let result = {};
-            // grab the children
+            // Grab the urls, headline and summary
+            result.articleSummary = $(element)
+              .find("p")
+              .text()
+              .slice(0, -13);
+            result.articleSummary += "...";
             result.imageURL = $(element)
               .find("img")
               .attr("src");
