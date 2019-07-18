@@ -22,25 +22,56 @@ module.exports = app => {
         // load the response with cheerio, simulating jquery
         var $ = cheerio.load(response.data);
 
-        // build your results array and prepare it for displaying on the page.
-        $("a.listElmnt-storyHeadline img").each((i, element) => {
-          // MIGHT STILL NEED TO GRAB THE HREF OF THE PARENT DIV HERE
+        // // build your results array and prepare it for displaying on the page.
+        // $("a.listElmnt-storyHeadline img").each((i, element) => {
+        //   // MIGHT STILL NEED TO GRAB THE HREF OF THE PARENT DIV HERE
 
-          let result = {};
+        //   let result = {};
 
-          if (!currentHeadlines.includes($(element).attr("alt"))) {
-            // Add the headline and imageurl
-            result.headline = $(element).attr("alt");
-            result.imageURL = $(element).attr("src");
+        //   if (!currentHeadlines.includes($(element).attr("alt"))) {
+        //     // Add the headline and imageurl
+        //     result.headline = $(element).attr("alt");
+        //     result.imageURL = $(element).attr("src");
+        //     result.saved = false;
+
+        //     console.log(result);
+        //     db.Article.create(result)
+        //       .then(dbArticle => {
+        //         console.log(dbArticle);
+        //       })
+        //       .catch(err => {
+        //         console.log(err);
+        //       });
+        //   }
+        // });
+
+        $("div.listElmnt").each((i, element) => {
+          if (
+            !currentHeadlines.includes(
+              $(element)
+                .find("img")
+                .attr("alt")
+            )
+          ) {
+            let result = {};
+            // grab the children
+            result.imageURL = $(element)
+              .find("img")
+              .attr("src");
+            result.headline = $(element)
+              .find("img")
+              .attr("alt");
             result.saved = false;
+            result.articleURL = $(element)
+              .find("a.listElmnt-storyHeadline")
+              .attr("href");
 
-            console.log(result);
             db.Article.create(result)
               .then(dbArticle => {
-                console.log(dbArticle);
+                console.log("CREATED: ", dbArticle);
               })
               .catch(err => {
-                console.log(err);
+                console.log("ERROR ", err);
               });
           }
         });

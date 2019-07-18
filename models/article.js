@@ -15,6 +15,11 @@ let ArticleSchema = new Schema({
     type: String,
     required: true
   },
+  // The associated link
+  articleURL: {
+    type: String,
+    required: true
+  },
   // Shows whether or not the article has been saved
   saved: {
     type: Boolean,
