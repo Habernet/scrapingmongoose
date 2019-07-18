@@ -15,7 +15,9 @@
                 </div>
                 <div class="card-action">
                     {{!-- When you grab the URL, it goes here --}}
-                    <a class="waves-effect waves-light btn-small">View Article</a>
+                    <a class="waves-effect waves-light btn-small" href="{{this.articleURL}}">View
+                        Article</a>
+                    <a data-id="{{this._id}}" class="delete waves-effect waves-light btn-small">Delete this article</a>
                     <button data-id="{{this._id}}" class="btn waves-effect waves-light">Comment
                         <i class="material-icons right">send</i>
                     </button>

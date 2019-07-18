@@ -22,29 +22,6 @@ module.exports = app => {
         // load the response with cheerio, simulating jquery
         var $ = cheerio.load(response.data);
 
-        // // build your results array and prepare it for displaying on the page.
-        // $("a.listElmnt-storyHeadline img").each((i, element) => {
-        //   // MIGHT STILL NEED TO GRAB THE HREF OF THE PARENT DIV HERE
-
-        //   let result = {};
-
-        //   if (!currentHeadlines.includes($(element).attr("alt"))) {
-        //     // Add the headline and imageurl
-        //     result.headline = $(element).attr("alt");
-        //     result.imageURL = $(element).attr("src");
-        //     result.saved = false;
-
-        //     console.log(result);
-        //     db.Article.create(result)
-        //       .then(dbArticle => {
-        //         console.log(dbArticle);
-        //       })
-        //       .catch(err => {
-        //         console.log(err);
-        //       });
-        //   }
-        // });
-
         $("div.listElmnt").each((i, element) => {
           if (
             !currentHeadlines.includes(
@@ -80,7 +57,15 @@ module.exports = app => {
     res.send("Scrape complete!");
   });
 
-  //   app.get("/articles") MIGHT NOT NEED THIS SINCE WE DO IT ON PAGE LOAD AND THAT MIGHT BE THE ONLY TIME WE HAVE TO DO IT
+  app.get("/saved", function(req, res) {
+    db.Article.find({ saved: true }, null, { sort: { _id: -1 } }, function(
+      error,
+      data
+    ) {
+      if (error) throw error;
+      res.render("saved", { articles: data });
+    });
+  });
 
   // .get /articles/:id to find an article based on the id and send the article along with its populated comments back
   app.get("/articles/:id", (req, res) => {

@@ -2,9 +2,7 @@
 $(document).ready(function() {
   $(document).on("click", ".save", function() {
     // Get the ID so we can update the article stored in the DB
-    console.log($(this));
     let articleID = $(this).data("id");
-    console.log("Article to update: " + articleID);
 
     // using the id, make an ajax call to /articles/:id
     $.ajax({
@@ -16,5 +14,20 @@ $(document).ready(function() {
     });
     //Change the article button to say "saved!"
     $(this).html("Saved!");
+  });
+  $(document).on("click", ".delete", function(e) {
+    // Get the ID so we can update the article stored in the DB
+    let articleID = $(this).data("id");
+    console.log(articleID);
+    // using the id, make an ajax call to /articles/:id
+    $.ajax({
+      method: "PUT",
+      url: "/articles/" + articleID,
+      data: { saved: false }
+    }).done(response => {
+      console.log(response);
+      // Reload the page
+      location.reload();
+    });
   });
 });
