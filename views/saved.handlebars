@@ -25,7 +25,8 @@
                     <a class="waves-effect waves-light btn-small" href="{{this.articleURL}}">View
                         Article</a>
                     <a data-id="{{this._id}}" class="delete waves-effect waves-light btn-small">Delete this article</a>
-                    <button data-id="{{this._id}}" class="view-comments btn waves-effect waves-light">View Comments
+                    <button data-id="{{this._id}}" data-target="comments"
+                        class="view-comments btn waves-effect waves-light modal-trigger">View Comments
                         <i class="material-icons right">send</i>
                     </button>
                     {{!-- modal --}}
@@ -40,7 +41,6 @@
                         <textarea id="comment-input" class="materialize-textarea"></textarea>
                         <div class="modal-footer">
                             {{!-- Modal buttons go here --}}
-                            <button data-target="comments" class="btn modal-trigger">Comments</button>
                             <button class="modal-action modal-close waves-effect waves-green btn">Close</button>
                         </div>
                     </div>
