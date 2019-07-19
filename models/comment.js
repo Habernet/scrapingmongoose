@@ -5,15 +5,15 @@ let Schema = mongoose.Schema;
 
 //Use the above constructor to a schema
 let CommentSchema = new Schema({
-  commentTitle: {
-    type: String,
-    validate: [
-      input => {
-        return input.length >= 1;
-      },
-      "Comment needs content."
-    ]
-  },
+  // commentTitle: {
+  //   type: String,
+  //   validate: [
+  //     input => {
+  //       return input.length >= 1;
+  //     },
+  //     "Comment needs content."
+  //   ]
+  // },
   commentBody: {
     type: String,
     validate: [

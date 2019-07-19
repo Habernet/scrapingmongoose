@@ -57,20 +57,21 @@ $(document).ready(function() {
       $(".comments-section").empty();
       // Use the ID to make the update the save comment button
       console.log("THIS ID : ", data._id);
-      $(".save-comment-button").data("id", data._id);
+      $(".save-comment-button").attr("data-id", data._id);
       if (data.comments.length === 0) {
         $(".comments-section").text("No comments.");
       } else {
         // loop through the comments, creating a card for adding to the modal.
         for (let i = 0; i < data.comments.length; i++) {
+          console.log(data.comments[i]);
           let commentCard = `<div class="col s12 m7">
             <div class="card horizontal">
               <div class="card-stacked">
                 <div class="card-content">
-                  <p>${data.comments[i].commentBody}</p>
-                  </p><button class='col s1 btn delete-comment-button' data-dbid='${
+                  <p>${data.comments[i]}</p>
+                  </p><button class="col s1 btn delete-comment-button" data-dbid="${
                     data.comments[i]._id
-                  }'>X</button>
+                  }">X</button>
                 </div>
               </div>
             </div>
@@ -83,4 +84,24 @@ $(document).ready(function() {
   });
 
   //On click of save comment button, ajax call to save comment based on iD
+  $(document).on("click", ".save-comment-button", function() {
+    // Get the id
+    let articleID = $(this).data("id");
+    // Get the comment body
+    let commentBody = $("#comment-input")
+      .val()
+      .trim();
+    console.log(commentBody);
+    //Make an ajax call to /articles/:id
+    $.ajax({
+      method: "POST",
+      url: "/articles/" + articleID,
+      data: {
+        commentBody: commentBody
+      }
+    }).done(function(data) {
+      // Change the button to saved
+      $(".save-comment-button").text("Saved!");
+    });
+  });
 });
