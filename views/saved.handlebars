@@ -38,9 +38,16 @@
                             </div>
                         </div>
                         {{!-- Area for people to input new comments --}}
-                        <textarea id="comment-input" class="materialize-textarea"></textarea>
+                        <div class="new-comment" style="margin: 20px">
+                            <textarea id="comment-input" class="materialize-textarea"></textarea>
+                            <label class="active" for="comment-input">Add new comment</label>
+                        </div>
                         <div class="modal-footer">
                             {{!-- Modal buttons go here --}}
+                            {{!-- create comment button  --}}
+                            <button class="modal-action modal-close waves-effect waves-green btn save-comment-button"
+                                data-id="">Save
+                                Comment</button>
                             <button class="modal-action modal-close waves-effect waves-green btn">Close</button>
                         </div>
                     </div>

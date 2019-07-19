@@ -54,7 +54,9 @@ $(document).ready(function() {
       // Build out the modal with jquery
       // Update the target modal title
       $(".modal-title").text(data.headline);
+      $(".comments-section").empty();
       // Use the ID to make the update the save comment button
+      console.log("THIS ID : ", data._id);
       $(".save-comment-button").data("id", data._id);
       if (data.comments.length === 0) {
         $(".comments-section").text("No comments.");
@@ -79,4 +81,6 @@ $(document).ready(function() {
       }
     });
   });
+
+  //On click of save comment button, ajax call to save comment based on iD
 });
