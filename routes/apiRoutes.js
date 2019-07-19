@@ -59,17 +59,7 @@ module.exports = app => {
         });
       });
     });
-    res.send("Scrape complete!");
-  });
-
-  app.get("/saved", function(req, res) {
-    db.Article.find({ saved: true }, null, { sort: { _id: -1 } }, function(
-      error,
-      data
-    ) {
-      if (error) throw error;
-      res.render("saved", { articles: data });
-    });
+    res.redirect("/scraped");
   });
 
   // .get /articles/:id to find an article based on the id and send the article along with its populated comments back
@@ -123,7 +113,6 @@ module.exports = app => {
   app.delete("/comments/:id", (req, res) => {
     db.Comment.remove({ _id: req.params, id }, (err, data) => {
       if (err) throw err;
-      console.log(data);
       res.sendStatus(200);
     });
   });
